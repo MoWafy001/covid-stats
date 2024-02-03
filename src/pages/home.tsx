@@ -1,7 +1,8 @@
 export const Home: React.FC = () => {
   return (
     <div>
-      <h1>Home</h1>
+      <h1>Current US Cases</h1>
+      
     </div>
   );
 }

@@ -4,3 +4,5 @@ export const colors = {
   tertiaryColor: "#FFB0B0",
   quaternaryColor: "#EFECEC",
 };
+
+export const API_BASE_URL = "https://api.covidtracking.com/v1";

@@ -8,6 +8,7 @@ import "./index.css";
 import { Home } from "./pages/home";
 import ErrorPage from "./pages/error-page";
 import { States } from "./pages/states";
+import { StateDetails } from "./pages/state-details";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: "/states",
         element: <States />,
+      },
+      {
+        path: "states/:stateName",
+        element: <StateDetails />,
       },
     ],
   },

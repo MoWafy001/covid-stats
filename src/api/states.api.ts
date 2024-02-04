@@ -26,7 +26,7 @@ export class StatesAPI implements IAPI {
     return memoization.memoize(`api-${url}`, async () => {
       const response = await fetch(url);
       const data = await response.json();
-      return data[0];
+      return data;
     });
   }
 
@@ -44,11 +44,11 @@ export class StatesAPI implements IAPI {
   public async historicDataForState(state: string): Promise<IStateCovidData> {
     const endpointPath = `/${state}/daily.json`;
     const url = `${this.baseUrl}${endpointPath}`;
-
+    
     return memoization.memoize(`api-${url}`, async () => {
       const response = await fetch(url);
       const data = await response.json();
-      return data[0];
+      return data;
     });
   }
 
@@ -70,7 +70,7 @@ export class StatesAPI implements IAPI {
     return memoization.memoize(`api-${url}`, async () => {
       const response = await fetch(url);
       const data = await response.json();
-      return data[0];
+      return data;
     });
   }
 

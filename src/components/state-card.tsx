@@ -44,7 +44,7 @@ export const StateCard = (props: {
   return (
     <CardContainer>
       <CardTitle>{props.name}</CardTitle>
-      <ShowButton to={`/state/${props.state.toLowerCase()}`}>
+      <ShowButton to={`/states/${props.state.toLowerCase()}`}>
         View Details
       </ShowButton>
     </CardContainer>

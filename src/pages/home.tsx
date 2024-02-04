@@ -16,6 +16,8 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { PageTitle } from "./page-title";
+import { PageContainer } from "./page-container";
 
 ChartJS.register(
   CategoryScale,
@@ -26,18 +28,6 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-
-const PageTitle = styled.h1`
-  font-size: 1.5em;
-  text-align: center;
-  color: ${colors.primaryColor};
-  margin-bottom: 2rem;
-`;
-
-const Container = styled.div`
-  text-align: center;
-  padding: 1rem 7rem;
-`;
 
 const StatsNumbersContainer = styled.div`
   display: grid;
@@ -72,7 +62,7 @@ export const Home: React.FC = () => {
   }, []);
 
   return (
-    <Container>
+    <PageContainer>
       <PageTitle>Current US Cases ({currentPayload.dateChecked})</PageTitle>
       <StatsNumbersContainer>
         <NumberStat
@@ -101,47 +91,47 @@ export const Home: React.FC = () => {
           label="in ICU currently"
         />
       </StatsNumbersContainer>
-        <Line
-          options={{
-            responsive: true,
-            maintainAspectRatio: true,
-            plugins: {
-              legend: {
-                position: "top" as const,
-              },
-              title: {
-                display: true,
-                text: "US Historical Data",
-              },
+      <Line
+        options={{
+          responsive: true,
+          maintainAspectRatio: true,
+          plugins: {
+            legend: {
+              position: "top" as const,
             },
-          }}
-          data={{
-            labels: historicalPayload.map((data) => data.dateChecked),
-            datasets: [
-              {
-                label: "Positive",
-                data: historicalPayload.map((data) => data.positive),
-                fill: false,
-                backgroundColor: colors.primaryColor,
-                borderColor: colors.primaryColor,
-              },
-              {
-                label: "Negative",
-                data: historicalPayload.map((data) => data.negative),
-                fill: false,
-                backgroundColor: colors.secondaryColor,
-                borderColor: colors.secondaryColor,
-              },
-              {
-                label: "Death",
-                data: historicalPayload.map((data) => data.death),
-                fill: false,
-                backgroundColor: colors.tertiaryColor,
-                borderColor: colors.tertiaryColor,
-              },
-            ],
-          }}
-        />
-    </Container>
+            title: {
+              display: true,
+              text: "US Historical Data",
+            },
+          },
+        }}
+        data={{
+          labels: historicalPayload.map((data) => data.dateChecked),
+          datasets: [
+            {
+              label: "Positive",
+              data: historicalPayload.map((data) => data.positive),
+              fill: false,
+              backgroundColor: colors.primaryColor,
+              borderColor: colors.primaryColor,
+            },
+            {
+              label: "Negative",
+              data: historicalPayload.map((data) => data.negative),
+              fill: false,
+              backgroundColor: colors.secondaryColor,
+              borderColor: colors.secondaryColor,
+            },
+            {
+              label: "Death",
+              data: historicalPayload.map((data) => data.death),
+              fill: false,
+              backgroundColor: colors.tertiaryColor,
+              borderColor: colors.tertiaryColor,
+            },
+          ],
+        }}
+      />
+    </PageContainer>
   );
 };

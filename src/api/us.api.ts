@@ -17,7 +17,7 @@ export class USAPI implements IAPI {
 
     const response = await fetch(`${this.baseUrl}${endpointPath}`);
     const data = await response.json();
-    return data;
+    return date ? data[0] : data;
   }
 
   public async currentData(): Promise<ICovidData> {
@@ -25,6 +25,6 @@ export class USAPI implements IAPI {
 
     const response = await fetch(`${this.baseUrl}${endpointPath}`);
     const data = await response.json();
-    return data;
+    return data[0];
   }
 }

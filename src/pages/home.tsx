@@ -1,9 +1,7 @@
-import styled from "styled-components";
 import { colors } from "../consts";
-import useApi from "../hooks/use-api";
+import useApi from "../hooks/use-api/use-api";
 import { useEffect } from "react";
 import { NumberStat } from "../components/number-stat";
-import { ICovidData } from "../api/interfaces/covid-data.interface";
 import { Line } from "react-chartjs-2";
 
 import {
@@ -31,26 +29,17 @@ ChartJS.register(
 );
 
 export const Home: React.FC = () => {
-  const {
-    data: dataCurrent,
-    fetchData: fetchDataCurrent,
-    loading: loadingCurrent,
-  } = useApi("us.current");
-  const {
-    data: dataHistorical,
-    fetchData: fetchDataHistorical,
-    loading: loadingHistorical,
-  } = useApi("us.historical");
-
-  const currentPayload = (dataCurrent || {}) as ICovidData;
-  const historicalPayload = (dataHistorical || []) as ICovidData[];
+  const { data: dataCurrent, fetchData: fetchDataCurrent } =
+    useApi("us.current");
+  const { data: dataHistorical, fetchData: fetchDataHistorical } =
+    useApi("us.historical.all");
 
   useEffect(() => {
-    if (!dataCurrent && !loadingCurrent) {
+    if (!dataCurrent) {
       fetchDataCurrent();
     }
 
-    if (!dataHistorical && !loadingHistorical) {
+    if (!dataHistorical) {
       fetchDataHistorical();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -58,31 +47,31 @@ export const Home: React.FC = () => {
 
   return (
     <PageContainer>
-      <PageTitle>Current US Cases ({currentPayload.dateChecked})</PageTitle>
+      <PageTitle>Current US Cases ({dataCurrent.dateChecked})</PageTitle>
       <StatsNumbersContainer>
         <NumberStat
-          value={currentPayload.death}
+          value={dataCurrent.death}
           label="death"
-          increase={currentPayload.deathIncrease}
+          increase={dataCurrent.deathIncrease}
         />
         <NumberStat
-          value={currentPayload.positive}
+          value={dataCurrent.positive}
           label="positive"
-          increase={currentPayload.positiveIncrease}
+          increase={dataCurrent.positiveIncrease}
         />
         <NumberStat
-          value={currentPayload.negative}
+          value={dataCurrent.negative}
           label="negative"
-          increase={currentPayload.negativeIncrease}
+          increase={dataCurrent.negativeIncrease}
         />
         <NumberStat
-          value={currentPayload.hospitalized}
+          value={dataCurrent.hospitalized}
           label="hospitalized"
-          increase={currentPayload.hospitalizedIncrease}
+          increase={dataCurrent.hospitalizedIncrease}
         />
-        <NumberStat value={currentPayload.pending} label="pending" />
+        <NumberStat value={dataCurrent.pending} label="pending" />
         <NumberStat
-          value={currentPayload.inIcuCurrently}
+          value={dataCurrent.inIcuCurrently}
           label="in ICU currently"
         />
       </StatsNumbersContainer>
@@ -101,25 +90,25 @@ export const Home: React.FC = () => {
           },
         }}
         data={{
-          labels: historicalPayload.map((data) => data.dateChecked),
+          labels: dataHistorical.map((data) => data.dateChecked),
           datasets: [
             {
               label: "Positive",
-              data: historicalPayload.map((data) => data.positive),
+              data: dataHistorical.map((data) => data.positive),
               fill: false,
               backgroundColor: colors.primaryColor,
               borderColor: colors.primaryColor,
             },
             {
               label: "Negative",
-              data: historicalPayload.map((data) => data.negative),
+              data: dataHistorical.map((data) => data.negative),
               fill: false,
               backgroundColor: colors.secondaryColor,
               borderColor: colors.secondaryColor,
             },
             {
               label: "Death",
-              data: historicalPayload.map((data) => data.death),
+              data: dataHistorical.map((data) => data.death),
               fill: false,
               backgroundColor: colors.tertiaryColor,
               borderColor: colors.tertiaryColor,

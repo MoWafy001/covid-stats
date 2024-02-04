@@ -1,83 +1,71 @@
-import useApi from "../hooks/use-api";
+import useApi from "../hooks/use-api/use-api";
 import { PageContainer } from "../components/page-container";
 import { PageTitle } from "../components/page-title";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { IStateCovidData } from "../api/interfaces/state-covid-data.interface";
 import { StatsNumbersContainer } from "../components/stats-number-container";
 import { NumberStat } from "../components/number-stat";
 import { Line } from "react-chartjs-2";
 import { colors } from "../consts";
-import { IStateMetadata } from "../api/interfaces/state-metadata.interface";
 
 export const StateDetails: React.FC = () => {
   const params = useParams();
-  const stateName = params.stateName;
+  const stateName = params.stateName as string;
 
-  const {
-    data: dataCurrent,
-    fetchData: fetchDataCurrent,
-    loading: loadingCurrent,
-  } = useApi("states.current.one");
+  const { data: dataCurrent, fetchData: fetchDataCurrent } =
+    useApi("states.current.one");
 
-  const {
-    data: dataHistorical,
-    fetchData: fetchDataHistorical,
-    loading: loadingHistorical,
-  } = useApi("states.historical.one");
+  const { data: dataHistorical, fetchData: fetchDataHistorical } = useApi(
+    "states.historical.one"
+  );
 
-  const {
-    data: dataMeta,
-    fetchData: fetchDataMeta,
-    loading: loadingMeta,
-  } = useApi("states.metaData.one");
-
-  let currentPayload = (dataCurrent || {}) as IStateCovidData;
-  let historicalPayload = (dataHistorical || []) as IStateCovidData[];
-  let metaPayload = (dataMeta || {}) as IStateMetadata;
+  const { data: dataMeta, fetchData: fetchDataMeta } = useApi(
+    "states.metaData.one"
+  );
 
   useEffect(() => {
-    if (!dataCurrent && !loadingCurrent) {
+    if (!dataCurrent) {
       fetchDataCurrent(stateName);
     }
 
-    if (!dataHistorical && !loadingHistorical) {
+    if (!dataHistorical) {
       fetchDataHistorical(stateName);
     }
 
-    if (!dataMeta && !loadingMeta) {
+    if (!dataMeta) {
       fetchDataMeta(stateName);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <PageContainer>
-      <PageTitle>{metaPayload.name}</PageTitle>
+      <PageTitle>{dataMeta.name}</PageTitle>
 
       <StatsNumbersContainer>
         <NumberStat
-          value={currentPayload.death}
+          value={dataCurrent.death}
           label="death"
-          increase={currentPayload.deathIncrease}
+          increase={dataCurrent.deathIncrease}
         />
         <NumberStat
-          value={currentPayload.positive}
+          value={dataCurrent.positive}
           label="positive"
-          increase={currentPayload.positiveIncrease}
+          increase={dataCurrent.positiveIncrease}
         />
         <NumberStat
-          value={currentPayload.negative}
+          value={dataCurrent.negative}
           label="negative"
-          increase={currentPayload.negativeIncrease}
+          increase={dataCurrent.negativeIncrease}
         />
         <NumberStat
-          value={currentPayload.hospitalized}
+          value={dataCurrent.hospitalized}
           label="hospitalized"
-          increase={currentPayload.hospitalizedIncrease}
+          increase={dataCurrent.hospitalizedIncrease}
         />
-        <NumberStat value={currentPayload.pending} label="pending" />
+        <NumberStat value={dataCurrent.pending} label="pending" />
         <NumberStat
-          value={currentPayload.inIcuCurrently}
+          value={dataCurrent.inIcuCurrently}
           label="in ICU currently"
         />
       </StatsNumbersContainer>
@@ -97,25 +85,25 @@ export const StateDetails: React.FC = () => {
           },
         }}
         data={{
-          labels: historicalPayload.map((data) => data.dateChecked),
+          labels: dataHistorical.map((data) => data.dateChecked),
           datasets: [
             {
               label: "Positive",
-              data: historicalPayload.map((data) => data.positive),
+              data: dataHistorical.map((data) => data.positive),
               fill: false,
               backgroundColor: colors.primaryColor,
               borderColor: colors.primaryColor,
             },
             {
               label: "Negative",
-              data: historicalPayload.map((data) => data.negative),
+              data: dataHistorical.map((data) => data.negative),
               fill: false,
               backgroundColor: colors.secondaryColor,
               borderColor: colors.secondaryColor,
             },
             {
               label: "Death",
-              data: historicalPayload.map((data) => data.death),
+              data: dataHistorical.map((data) => data.death),
               fill: false,
               backgroundColor: colors.tertiaryColor,
               borderColor: colors.tertiaryColor,

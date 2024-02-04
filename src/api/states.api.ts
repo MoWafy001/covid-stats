@@ -41,7 +41,7 @@ export class StatesAPI implements IAPI {
     });
   }
 
-  public async historicDataForState(state: string): Promise<IStateCovidData> {
+  public async historicDataForState(state: string): Promise<IStateCovidData[]> {
     const endpointPath = `/${state}/daily.json`;
     const url = `${this.baseUrl}${endpointPath}`;
     

@@ -1,4 +1,4 @@
-import useApi from "../hooks/use-api";
+import useApi from "../hooks/use-api/use-api";
 import { PageContainer } from "../components/page-container";
 import { PageTitle } from "../components/page-title";
 import { useEffect } from "react";
@@ -14,7 +14,7 @@ const CardsContainer = styled.div`
 `;
 
 export const States: React.FC = () => {
-  const { data, fetchData, loading } = useApi("states.metaData.all");
+  const { data, fetchData } = useApi("states.metaData.all");
   const searchTerm = useSearch();
 
   let payload = (data || []) as IStateMetadata[];
@@ -25,9 +25,10 @@ export const States: React.FC = () => {
     );
 
   useEffect(() => {
-    if (!data && !loading) {
+    if (!data) {
       fetchData();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

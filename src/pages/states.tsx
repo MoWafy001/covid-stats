@@ -1,8 +1,8 @@
 import useApi from "../hooks/use-api";
-import { PageContainer } from "./page-container";
-import { PageTitle } from "./page-title";
+import { PageContainer } from "../components/page-container";
+import { PageTitle } from "../components/page-title";
 import { useEffect } from "react";
-import { StateCard } from "./state-card";
+import { StateCard } from "../components/state-card";
 import { IStateMetadata } from "../api/interfaces/state-metadata.interface";
 import styled from "styled-components";
 import { useSearch } from "../hooks/use-search";

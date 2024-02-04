@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { SearchBar } from "./search-bar";
 import { colors } from "../consts";
-import { useSearch, useSearchUpdate } from "../hooks/use-search";
 
 const NavBar = styled.nav`
   display: flex;

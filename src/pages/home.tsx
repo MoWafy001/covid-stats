@@ -16,8 +16,8 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { PageTitle } from "./page-title";
-import { PageContainer } from "./page-container";
+import { PageTitle } from "../components/page-title";
+import { PageContainer } from "../components/page-container";
 
 ChartJS.register(
   CategoryScale,

@@ -6,6 +6,7 @@ import { StateCard } from "../components/state-card";
 import { IStateMetadata } from "../api/interfaces/state-metadata.interface";
 import styled from "styled-components";
 import { useSearch } from "../hooks/use-search";
+import { Loading } from "../components/loading";
 
 const CardsContainer = styled.div`
   display: flex;
@@ -30,6 +31,10 @@ export const States: React.FC = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (!data) {
+    return <Loading />;
+  }
 
   return (
     <PageContainer>

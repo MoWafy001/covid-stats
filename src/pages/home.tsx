@@ -17,6 +17,7 @@ import {
 import { PageTitle } from "../components/page-title";
 import { PageContainer } from "../components/page-container";
 import { StatsNumbersContainer } from "../components/stats-number-container";
+import { Loading } from "../components/loading";
 
 ChartJS.register(
   CategoryScale,
@@ -44,6 +45,10 @@ export const Home: React.FC = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (!dataCurrent || !dataHistorical) {
+    return <Loading />;
+  }
 
   return (
     <PageContainer>

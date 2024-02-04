@@ -7,6 +7,7 @@ import { StatsNumbersContainer } from "../components/stats-number-container";
 import { NumberStat } from "../components/number-stat";
 import { Line } from "react-chartjs-2";
 import { colors } from "../consts";
+import { Loading } from "../components/loading";
 
 export const StateDetails: React.FC = () => {
   const params = useParams();
@@ -37,6 +38,10 @@ export const StateDetails: React.FC = () => {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (!dataCurrent || !dataHistorical || !dataMeta) {
+    return <Loading />;
+  }
 
   return (
     <PageContainer>

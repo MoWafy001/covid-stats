@@ -45,8 +45,6 @@ const StatsNumbersContainer = styled.div`
   gap: 1rem;
 `;
 
-const ChartsContainer = styled.div``;
-
 export const Home: React.FC = () => {
   const {
     data: dataCurrent,
@@ -61,8 +59,6 @@ export const Home: React.FC = () => {
 
   const currentPayload = (dataCurrent || {}) as ICovidData;
   const historicalPayload = (dataHistorical || []) as ICovidData[];
-
-  console.log("historicalPayload", historicalPayload);
 
   useEffect(() => {
     if (!dataCurrent && !loadingCurrent) {

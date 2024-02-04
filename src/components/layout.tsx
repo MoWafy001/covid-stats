@@ -1,11 +1,14 @@
 import { Outlet } from "react-router-dom";
 import { Navbar } from "./navbar";
+import { SearchProvider } from "../hooks/use-search";
 
 export const Layout: React.FC = () => {
   return (
-    <div>
-      <Navbar />
-      <Outlet />
-    </div>
+    <SearchProvider>
+      <div>
+        <Navbar />
+        <Outlet />
+      </div>
+    </SearchProvider>
   );
 };

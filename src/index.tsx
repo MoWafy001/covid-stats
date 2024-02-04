@@ -7,6 +7,7 @@ import { Layout } from "./components/layout";
 import "./index.css";
 import { Home } from "./pages/home";
 import ErrorPage from "./pages/error-page";
+import { States } from "./pages/states";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/states",
+        element: <States />,
       },
     ],
   },

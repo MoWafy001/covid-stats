@@ -20,7 +20,7 @@ export class StatesAPI implements IAPI {
 
     const response = await fetch(`${this.baseUrl}${endpointPath}`);
     const data = await response.json();
-    return data;
+    return data[0]
   }
 
   public async historicDataForAll(): Promise<IStateCovidData[]> {
@@ -36,7 +36,7 @@ export class StatesAPI implements IAPI {
 
     const response = await fetch(`${this.baseUrl}${endpointPath}`);
     const data = await response.json();
-    return data;
+    return data[0]
   }
 
   public async currentDataForAll(): Promise<IStateCovidData[]> {
@@ -52,7 +52,7 @@ export class StatesAPI implements IAPI {
 
     const response = await fetch(`${this.baseUrl}${endpointPath}`);
     const data = await response.json();
-    return data;
+    return data[0]
   }
 
   public async valuesForState(
@@ -64,6 +64,6 @@ export class StatesAPI implements IAPI {
 
     const response = await fetch(`${this.baseUrl}${endpointPath}`);
     const data = await response.json();
-    return data;
+    return data[0]
   }
 }

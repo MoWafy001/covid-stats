@@ -7,13 +7,19 @@ import { colors } from "../consts";
 import { StateDetails } from "./state-details";
 
 const TwoHalves = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    justify-content: center;
+    align-items: flex-start;
 `;
 
 const Half = styled.div`
-  width: 100%; /* Added this line */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 `;
 
 const Select = styled.select`

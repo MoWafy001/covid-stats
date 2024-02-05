@@ -9,6 +9,8 @@ import { Home } from "./pages/home";
 import ErrorPage from "./pages/error-page";
 import { States } from "./pages/states";
 import { StateDetails } from "./pages/state-details";
+import { CompareStates } from "./pages/compare-states";
+import { StateDetailsPage } from "./pages/state-details-page";
 
 const router = createBrowserRouter([
   {
@@ -26,7 +28,11 @@ const router = createBrowserRouter([
       },
       {
         path: "states/:stateName",
-        element: <StateDetails />,
+        element: <StateDetailsPage />,
+      },
+      {
+        path: "compare",
+        element: <CompareStates />,
       },
     ],
   },

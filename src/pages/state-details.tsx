@@ -1,17 +1,14 @@
 import useApi from "../hooks/use-api/use-api";
-import { PageContainer } from "../components/page-container";
-import { PageTitle } from "../components/page-title";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { StatsNumbersContainer } from "../components/stats-number-container";
 import { NumberStat } from "../components/number-stat";
 import { Line } from "react-chartjs-2";
 import { colors } from "../consts";
 import { Loading } from "../components/loading";
+import { PageTitle } from "../components/page-title";
 
-export const StateDetails: React.FC = () => {
-  const params = useParams();
-  const stateName = params.stateName as string;
+export const StateDetails = (props: { stateName: string }) => {
+  const stateName = props.stateName;
 
   const { data: dataCurrent, fetchData: fetchDataCurrent } =
     useApi("states.current.one");
@@ -25,28 +22,22 @@ export const StateDetails: React.FC = () => {
   );
 
   useEffect(() => {
-    if (!dataCurrent) {
-      fetchDataCurrent(stateName);
-    }
+    console.log("use effect");
 
-    if (!dataHistorical) {
-      fetchDataHistorical(stateName);
-    }
+    fetchDataCurrent(stateName);
 
-    if (!dataMeta) {
-      fetchDataMeta(stateName);
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    fetchDataHistorical(stateName);
+
+    fetchDataMeta(stateName);
+  }, [stateName]);
 
   if (!dataCurrent || !dataHistorical || !dataMeta) {
     return <Loading />;
   }
 
   return (
-    <PageContainer>
+    <>
       <PageTitle>{dataMeta.name}</PageTitle>
-
       <StatsNumbersContainer>
         <NumberStat
           value={dataCurrent.death}
@@ -116,6 +107,6 @@ export const StateDetails: React.FC = () => {
           ],
         }}
       />
-    </PageContainer>
+    </>
   );
 };

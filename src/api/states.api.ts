@@ -20,6 +20,7 @@ export class StatesAPI implements IAPI {
   }
 
   public async metadataForState(state: string): Promise<IStateMetadata> {
+    state = state.toLowerCase();
     const endpointPath = `/${state}/info.json`;
     const url = `${this.baseUrl}${endpointPath}`;
 
@@ -42,6 +43,7 @@ export class StatesAPI implements IAPI {
   }
 
   public async historicDataForState(state: string): Promise<IStateCovidData[]> {
+    state = state.toLowerCase();
     const endpointPath = `/${state}/daily.json`;
     const url = `${this.baseUrl}${endpointPath}`;
     
@@ -64,6 +66,7 @@ export class StatesAPI implements IAPI {
   }
 
   public async currentDataForState(state: string): Promise<IStateCovidData> {
+    state = state.toLowerCase();
     const endpointPath = `/${state}/current.json`;
     const url = `${this.baseUrl}${endpointPath}`;
 

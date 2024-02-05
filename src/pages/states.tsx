@@ -12,6 +12,12 @@ const CardsContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 `;
 
 export const States: React.FC = () => {

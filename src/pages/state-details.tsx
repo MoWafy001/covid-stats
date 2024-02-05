@@ -70,6 +70,7 @@ export const StateDetails = (props: { stateName: string }) => {
         options={{
           responsive: true,
           maintainAspectRatio: true,
+          aspectRatio: document.body.clientWidth < 700 ? 1 : 2/1,
           plugins: {
             legend: {
               position: "top" as const,

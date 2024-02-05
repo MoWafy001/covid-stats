@@ -10,28 +10,27 @@ const CardContainer = styled.div`
   padding: 1rem;
   justify-content: space-between;
   align-items: center;
-  font-size: 0%.8rem;
 `;
 
 const CardTitle = styled.span`
   display: block;
   text-transform: capitalize;
   font-weight: bold;
-  font-size: 1.5rem;
   color: ${({ color }) => color || colors.primaryColor};
+  font-size: 0%.4rem;
 `;
 
 const ShowButton = styled(Link)`
   background: ${colors.primaryColor};
-  padding: 0.8rem;
-  border-radius: 1rem;
+  padding: 0.4rem;
+  border-radius: 10px;
   color: ${colors.quaternaryColor};
-  font-weight: bold;
   text-align: center;
   margin: 0;
   text-decoration: none;
   text-transform: uppercase;
   transition: background-color 0.3s ease;
+  font-size: 0.8rem;
   &:hover {
     background: ${colors.secondaryColor};
   }

@@ -10,6 +10,12 @@ const NavBar = styled.nav`
   padding: 1rem 6rem;
   background-color: ${colors.primaryColor};
   color: ${colors.quaternaryColor};
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
 `;
 
 const ItemsList = styled.ul`
@@ -18,13 +24,18 @@ const ItemsList = styled.ul`
   padding: 0;
   margin: 0;
   gap: 1rem;
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+    text-align: center;
+  }
 `;
 
 const ListItem = styled(Link)`
   text-decoration: none;
   color: ${colors.quaternaryColor};
   transition: filter 300ms;
-  &:hover{
+  &:hover {
     filter: brightness(1.5);
   }
 `;

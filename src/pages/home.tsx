@@ -18,6 +18,7 @@ import { PageTitle } from "../components/page-title";
 import { PageContainer } from "../components/page-container";
 import { StatsNumbersContainer } from "../components/stats-number-container";
 import { Loading } from "../components/loading";
+import styled from "styled-components";
 
 ChartJS.register(
   CategoryScale,
@@ -84,6 +85,7 @@ export const Home: React.FC = () => {
         options={{
           responsive: true,
           maintainAspectRatio: true,
+          aspectRatio: document.body.clientWidth < 700 ? 1 : 2/1,
           plugins: {
             legend: {
               position: "top" as const,

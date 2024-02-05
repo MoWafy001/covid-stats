@@ -67,6 +67,7 @@ export const CompareStates: React.FC = () => {
     if (!stateMetaData) {
       fetchStatesMetaData();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleState1Change = (event: React.ChangeEvent<HTMLSelectElement>) => {

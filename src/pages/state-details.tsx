@@ -27,6 +27,7 @@ export const StateDetails = (props: { stateName: string }) => {
     fetchDataHistorical(stateName);
 
     fetchDataMeta(stateName);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stateName]);
   
 

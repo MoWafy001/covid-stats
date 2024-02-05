@@ -18,7 +18,6 @@ import { PageTitle } from "../components/page-title";
 import { PageContainer } from "../components/page-container";
 import { StatsNumbersContainer } from "../components/stats-number-container";
 import { Loading } from "../components/loading";
-import styled from "styled-components";
 
 ChartJS.register(
   CategoryScale,

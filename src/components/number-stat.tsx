@@ -29,12 +29,10 @@ export const NumberStat = (props: {
   return (
     <StatContainer color={props.color}>
       <StatLabel color={props.color}>{props.label}</StatLabel>
-      <StatValue color={props.color}>amount: {props.value}</StatValue>
-      {props.increase && (
-        <StatIncrease color={props.color}>
-          increase: {props.increase}
-        </StatIncrease>
-      )}
+      <StatValue color={props.color}>amount: {props.value || "N/A"}</StatValue>
+      <StatIncrease color={props.color}>
+        increase: {props.increase || "N/A"}
+      </StatIncrease>
     </StatContainer>
   );
 };

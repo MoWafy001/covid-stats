@@ -30,6 +30,7 @@ export const StateDetails = (props: { stateName: string }) => {
 
     fetchDataMeta(stateName);
   }, [stateName]);
+  
 
   if (!dataCurrent || !dataHistorical || !dataMeta) {
     return <Loading />;

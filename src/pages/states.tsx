@@ -47,7 +47,7 @@ export const States: React.FC = () => {
       <PageTitle>States</PageTitle>
       <CardsContainer>
         {payload.map((state) => (
-          <StateCard name={state.name} state={state.state} />
+          <StateCard name={state.name} state={state.state} key={state.state} />
         ))}
       </CardsContainer>
     </PageContainer>

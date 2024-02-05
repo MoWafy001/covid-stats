@@ -22,8 +22,6 @@ export const StateDetails = (props: { stateName: string }) => {
   );
 
   useEffect(() => {
-    console.log("use effect");
-
     fetchDataCurrent(stateName);
 
     fetchDataHistorical(stateName);
